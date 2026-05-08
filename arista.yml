@@ -3,7 +3,7 @@ name: arista
 topology:
   nodes:
     
-    arista_ceos:
+    ceos:
       kind: arista_ceos
       image: ceos:4.34.3
       #startup-config: configs/myconfig.txt      
@@ -28,6 +28,6 @@ topology:
     
           
   links:
-    - endpoints: ["arista_ceos:eth1", "PC1:eth1"] 
-    - endpoints: ["arista_ceos:eth2", "iperf-server:eth1"]
+    - endpoints: ["ceos:eth1", "PC1:eth1"] 
+    - endpoints: ["ceos:eth2", "iperf-server:eth1"]
     
