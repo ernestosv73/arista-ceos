@@ -1,0 +1,33 @@
+name: arista
+
+topology:
+  nodes:
+    
+    arista_ceos:
+      kind: arista_ceos
+      image: ceos:4.34.3
+      #startup-config: configs/myconfig.txt      
+    
+    PC1:
+      kind: linux
+      image: docker.io/esanchezv/kaliipv6:latest
+      binds:
+        - scripts/:/root
+      exec:
+        - chmod +x /root/install-iperf3.sh
+        - sh /root/install-iperf3.sh
+
+    iperf-server:
+      kind: linux
+      image: docker.io/esanchezv/kaliipv6:latest
+      binds:
+        - scripts/:/root
+      exec:
+        - chmod +x /root/install-iperf3.sh
+        - sh /root/install-iperf3.sh
+    
+          
+  links:
+    - endpoints: ["arista_ceos:eth1", "PC1:eth1"] 
+    - endpoints: ["arista_ceos:eth2", "iperf-server:eth1"]
+    
