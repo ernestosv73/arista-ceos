@@ -16,6 +16,7 @@ topology:
       exec:
         - chmod +x /root/install-iperf3.sh
         - sh /root/install-iperf3.sh
+        - ip -6 addr add 2001:db8:dc::20/64 dev eth1
 
     iperf-server:
       kind: linux
@@ -25,6 +26,7 @@ topology:
       exec:
         - chmod +x /root/install-iperf3.sh
         - sh /root/install-iperf3.sh
+        - ip -6 addr add 2001:db8:dc::10/64 dev eth1
     
           
   links:
